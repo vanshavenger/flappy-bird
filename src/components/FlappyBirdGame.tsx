@@ -100,10 +100,14 @@ const FlappyBirdGame: React.FC = () => {
         bird.top <= 0 ||
         bird.bottom >= gameSize.height
       ) {
+        setHighScore((prev) => Math.max(prev, score))
         setGameStarted(false)
         toast.success('Game Over', {
           description: `Your score: ${score}`,
         })
+      }
+      else {
+        setScore((prev) => prev + 1)
       }
     }
   }, [gameStarted, birdPosition, birdVelocity, pipes, gameSize.height, score, highScore])
